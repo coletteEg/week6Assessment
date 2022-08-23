@@ -18,3 +18,16 @@ test('Title shows up when page loads', async () => {
     const displayed = await title.isDisplayed()
     expect(displayed).toBe(true)
 })
+
+test("draw button", async () => {
+    await driver.findElement(By.id('draw')).click()
+    let choice = await driver.findElement(By.id('choices'))
+    let displayed = await choice.isDisplayed()
+    expect(displayed).toBe(true)
+})
+
+// test("removes", async () => {
+//     await driver.findElement(By.id('draw')).click()
+//     await driver.findElement(By.css(".bot-btn")).click()
+
+// })

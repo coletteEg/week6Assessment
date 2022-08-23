@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const Rollbar = require('rollbar')
 const app = express()
 const {bots, playerRecord} = require('./data')
 const {shuffleArray} = require('./utils')
@@ -8,29 +9,21 @@ app.use(express.json())
 // app.get('https://fonts.googleapis.com')
 // app.get('https://fonts.gstatic.com')
 // app.get('https://fonts.googleapis.com/css2?family=Audiowide&display=swap')
-
+Rollbar.log("hello!")
  
 app.get('/',function(req,res) {
     res.sendFile(path.join(__dirname, './public/index.html'));
   });
 
   app.get('/',function(req,res) {
-    res.sendFile(path.join(__dirname, './public/index.css'));
+    res.sendFile(path.join(__dirname, './public/styles.css'));
   });
 
   app.get('/',function(req,res) {
-    res.sendFile(path.join(__dirname, './public/index.js'));
+    res.sendFile(path.join(__dirname, './public/js'));
   });
 
-  app.get('/js', function(req, res) {
-    res.sendFile('./public/index.css', './public/index.js');
-  });
-  app.get('https://fonts.googleapis.com/css2?family=Audiowide&display=swap', function(req, res) {
-    res.sendFile('./public/index.css', './public/index.js');
-  });
-  app.get('/styles', function(req, res) {
-    res.sendFile('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-  });
+
 
 app.get('/api/robots', (req, res) => {
     try {
